@@ -2,7 +2,7 @@ import * as jwt from 'jsonwebtoken';
 
 export class Authenticator {
     private static getExpiresIn():number{
-        return Number(process.env.ACCES_TOKEN_EXPIRE_IN)
+        return Number(process.env.ACCESS_TOKEN_EXPIRES_IN)
     }
 
     public generateToken(data: AuthenticationData): string {
@@ -14,7 +14,7 @@ export class Authenticator {
     public verify(token: string): AuthenticationData {
         const data = jwt.verify(
             token,
-            process.env.JWT_KEY as string
+            process.env.JWT_KEY as string,
         ) as any
 
         return {

@@ -11,10 +11,6 @@ export const loginEndpoint = async (req: Request, res: Response) => {
       throw new Error(" Invalid email or password")
     }
 
-    if (req.body.password.length < 6) {
-      throw new Error("Password must have 6 or more caracters")
-    }
-
     const userData = {
       email: req.body.email,
       password: req.body.password
@@ -47,7 +43,7 @@ export const loginEndpoint = async (req: Request, res: Response) => {
 
   } catch (err) {
     res.status(400).send({
-      message: err.message
+      message: err.message      
     })
 
   } finally {
