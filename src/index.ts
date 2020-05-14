@@ -3,6 +3,7 @@ import { AddressInfo } from "net";
 import dotenv from "dotenv";
 import { signupEndpoint } from "./endpoints/signupEndpoint";
 import { loginEndpoint } from "./endpoints/loginEndpoint";
+import { getUserByIDEndpoint, getUserByTokenEndpoint} from "./endpoints/getUserEndpoint";
 
 dotenv.config();
 
@@ -21,3 +22,5 @@ const server = app.listen(process.env.PORT || 3003, () => {
 
 app.post("/signup", signupEndpoint);
 app.post("/login", loginEndpoint);
+app.get("/user", getUserByTokenEndpoint);
+app.get("/user/:id", getUserByIDEndpoint);
