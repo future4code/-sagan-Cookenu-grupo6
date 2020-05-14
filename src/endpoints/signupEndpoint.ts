@@ -10,7 +10,7 @@ export const signupEndpoint = async(req: Request, res: Response) => {
     try{
 
         if(!req.body.name || !req.body.email || !req.body.password){
-            throw new Error("Name or Email or Password Invalid")
+            throw new Error("Invalid name, email or password")
         }
 
         if(req.body.password.length < 6){
