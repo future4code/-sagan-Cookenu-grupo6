@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import { signupEndpoint } from "./endpoints/signupEndpoint";
 import { loginEndpoint } from "./endpoints/loginEndpoint";
 import { getUserByIDEndpoint, getUserByTokenEndpoint} from "./endpoints/getUserEndpoint";
+import { createRecipeEndpoint } from "./endpoints/createRecipeEndpoint";
+import { getRecipeEndpoint } from "./endpoints/getRecipeEndpoint";
 
 dotenv.config();
 
@@ -24,3 +26,5 @@ app.post("/signup", signupEndpoint);
 app.post("/login", loginEndpoint);
 app.get("/user", getUserByTokenEndpoint);
 app.get("/user/:id", getUserByIDEndpoint);
+app.post("/recipe", createRecipeEndpoint);
+app.get("/recipe/:id", getRecipeEndpoint)
