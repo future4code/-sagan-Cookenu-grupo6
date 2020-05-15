@@ -35,7 +35,6 @@ app.post("/recipe/update", updateRecipeEndpoint);
 app.post("/user/follow", followProfileEndpoint);
 app.post("/user/unfollow", unfollowProfileEndpoint);
 
-
 app.get("/user/profile", getProfileEndpoint);
 app.get("/user/:id", getUserByIDEndpoint);
 app.get("/recipe/feed", getRecipesFeedEndpoint);
