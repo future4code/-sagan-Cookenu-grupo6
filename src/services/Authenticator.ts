@@ -18,11 +18,13 @@ export class Authenticator {
         ) as any
 
         return {
-            id: data.id
+            id: data.id,
+            role: data.role
         }
     }
 }
 
 export interface AuthenticationData {
-    id: string
+    id: string,
+    role: string
 }

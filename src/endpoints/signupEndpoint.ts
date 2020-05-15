@@ -20,7 +20,8 @@ export const signupEndpoint = async(req: Request, res: Response) => {
         const userData = {
             name: req.body.name,
             email: req.body.email,
-            password: req.body.password
+            password: req.body.password,
+            role: req.body.role
         }
 
         const idGenerator = new IdGenerator();
@@ -34,12 +35,14 @@ export const signupEndpoint = async(req: Request, res: Response) => {
             id,
             userData.name,
             userData.email,
-            hashPassword
+            hashPassword,
+            userData.role
         );
 
         const authenticator = new Authenticator()
         const token = authenticator.generateToken({
-            id
+            id,
+            role: userData.role
         })
 
         res.status(200).send({

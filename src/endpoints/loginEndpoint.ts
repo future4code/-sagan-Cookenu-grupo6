@@ -34,7 +34,8 @@ export const loginEndpoint = async (req: Request, res: Response) => {
 
     const authenticator = new Authenticator()
     const token = authenticator.generateToken({
-      id: user.id
+      id: user.id,
+      role: user.role
     })
 
     res.status(200).send({

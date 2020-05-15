@@ -30,32 +30,18 @@ export class RecipeDatabase extends BaseDatabase {
        return result[0]
    }
 
-  /* public async getFeed():Promise<any>{
+   public async getFeed():Promise<any>{
        const result = await this.connection().raw(`
-       SELECT * FROM ${RecipeDatabase.TABLE_NAME} r LEFT JOIN CookenuUser u ON r.user_id = u.id
-       `)   
+       SELECT r.id as recipe_id, r.title, r.description, r.created_at as createdAt, u.id as userId, u.name as userName
+        FROM ${RecipeDatabase.TABLE_NAME} r LEFT JOIN CookenuUser u ON r.user_id = u.id
+       `)
+        return result[0]
+       }
 
-       return result.map((recipe: { id: any; name: any; }) =>{
-           return{
-            id: recipe.id,
-            name: recipe.name
-           }
-
-       })
-   }*/ 
-   
-   public async getFeed(): Promise<any> {
-    const result = await this.connection()
-    .select("*")
-    .from(`${RecipeDatabase.TABLE_NAME}`)
-    .leftJoin(`CookenuUser`, "CookenuRecipes.user_id", `CookenuUser.id`)
-    return result.map(recipe=>{return{
-      id: recipe.id,
-      title: recipe.title,
-      description: recipe.description,
-      createdAt: recipe.created_at,
-      userId: recipe.user_id,
-      userName: recipe.name
-    }})
-  }
-} 
+    public async delete(id:string):Promise<void>{
+        await this.connection()
+        .delete()
+        .from(RecipeDatabase.TABLE_NAME)
+        .where({ id })
+    }
+   }
