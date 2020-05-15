@@ -9,7 +9,6 @@ import { getRecipeEndpoint } from "./endpoints/getRecipeEndpoint";
 import { getRecipesFeedEndpoint } from "./endpoints/getRecipesFeedEndpoint";
 import { getProfileEndpoint } from "./endpoints/getProfileEndpoint";
 
-
 dotenv.config();
 
 const app = express();
@@ -31,6 +30,5 @@ app.post("/recipe", createRecipeEndpoint);
 
 app.get("/user/profile", getProfileEndpoint);
 app.get("/user/:id", getUserByIDEndpoint);
-app.get("/recipe/:id", getRecipeEndpoint);
 app.get("/recipe/feed", getRecipesFeedEndpoint);
-
+app.get("/recipe/:id", getRecipeEndpoint);
