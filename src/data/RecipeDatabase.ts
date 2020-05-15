@@ -38,6 +38,14 @@ export class RecipeDatabase extends BaseDatabase {
         return result[0]
        }
 
+    public async update(id:string, title:string, description:string): Promise<void>{
+        await this.connection().raw(`
+        UPDATE ${RecipeDatabase.TABLE_NAME}
+        SET title = ${title}, description = ${description} 
+        WHERE id = ${id}
+        `)        
+    }
+
     public async delete(id:string):Promise<void>{
         await this.connection()
         .delete()

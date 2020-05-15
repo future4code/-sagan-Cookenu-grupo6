@@ -9,6 +9,7 @@ import { getRecipeEndpoint } from "./endpoints/getRecipeEndpoint";
 import { getRecipesFeedEndpoint } from "./endpoints/getRecipesFeedEndpoint";
 import { getProfileEndpoint } from "./endpoints/getProfileEndpoint";
 import { deleteRecipeEndpoint } from "./endpoints/deleteRecipeEndpoint";
+import { updateRecipeEndpoint } from "./endpoints/updateRecipeEndpoint";
 
 dotenv.config();
 
@@ -28,6 +29,7 @@ const server = app.listen(process.env.PORT || 3003, () => {
 app.post("/signup", signupEndpoint);
 app.post("/login", loginEndpoint);
 app.post("/recipe", createRecipeEndpoint);
+app.post("/recipe/update", updateRecipeEndpoint);
 
 app.get("/user/profile", getProfileEndpoint);
 app.get("/user/:id", getUserByIDEndpoint);
