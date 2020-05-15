@@ -29,4 +29,33 @@ export class RecipeDatabase extends BaseDatabase {
 
        return result[0]
    }
-}
+
+  /* public async getFeed():Promise<any>{
+       const result = await this.connection().raw(`
+       SELECT * FROM ${RecipeDatabase.TABLE_NAME} r LEFT JOIN CookenuUser u ON r.user_id = u.id
+       `)   
+
+       return result.map((recipe: { id: any; name: any; }) =>{
+           return{
+            id: recipe.id,
+            name: recipe.name
+           }
+
+       })
+   }*/ 
+   
+   public async getFeed(): Promise<any> {
+    const result = await this.connection()
+    .select("*")
+    .from(`${RecipeDatabase.TABLE_NAME}`)
+    .leftJoin(`CookenuUser`, "CookenuRecipes.user_id", `CookenuUser.id`)
+    return result.map(recipe=>{return{
+      id: recipe.id,
+      title: recipe.title,
+      description: recipe.description,
+      createdAt: recipe.created_at,
+      userId: recipe.user_id,
+      userName: recipe.name
+    }})
+  }
+} 
