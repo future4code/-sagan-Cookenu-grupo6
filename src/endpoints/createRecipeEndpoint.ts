@@ -28,7 +28,7 @@ export const createRecipeEndpoint = async(req: Request, res: Response) => {
             tokenData.id,
             recipeData.title,
             recipeData.description,
-            date.format("DD / MM / YYYY")            
+            date.format("DD/MM/YYYY")            
         )   
         
         res.sendStatus(200);

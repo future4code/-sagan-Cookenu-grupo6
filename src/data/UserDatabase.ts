@@ -8,14 +8,16 @@ export class UserDatabase extends BaseDatabase {
     id: string,
     name: string,
     email: string,
-    password: string
+    password: string,
+    role: string
   ): Promise<void> {
     await this.connection()
       .insert({
         id,
         name,
         email,
-        password
+        password,
+        role
       })
       .into(UserDatabase.TABLE_NAME)
   }
