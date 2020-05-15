@@ -28,4 +28,12 @@ export abstract class BaseDatabase {
         }
         BaseDatabase.KNEX_CONNECTION = null
     }
+
+    protected convertBooleanToTinyInt(value: boolean): number {
+        return value ? 1 : 0;
+    }
+
+    protected convertTinyIntToBoolean(value: number): boolean {
+        return value === 1;
+    }
 }

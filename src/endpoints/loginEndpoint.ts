@@ -3,6 +3,7 @@ import { BaseDatabase } from '../data/BaseDatabase';
 import { HashManager } from '../services/HashManager';
 import { UserDatabase } from '../data/UserDatabase';
 import { Authenticator } from '../services/Authenticator';
+import { RefreshTokenDatabase } from '../data/RefreshTokenDatabase';
 
 export const loginEndpoint = async (req: Request, res: Response) => {
   try {
@@ -13,7 +14,8 @@ export const loginEndpoint = async (req: Request, res: Response) => {
 
     const userData = {
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
+      device: req.body.device
     }
     const userDatabase = new UserDatabase();
     const user = await userDatabase.getUserByEmail(userData.email)
@@ -33,13 +35,37 @@ export const loginEndpoint = async (req: Request, res: Response) => {
     }
 
     const authenticator = new Authenticator()
-    const token = authenticator.generateToken({
+    const accessToken = authenticator.generateToken({
       id: user.id,
       role: user.role
-    })
+    }, process.env.ACCESS_TOKEN_EXPIRES_IN );
+
+    const refreshToken = authenticator.generateToken({
+      id: user.id,
+      device: userData.device
+    }, process.env.REFRESH_TOKEN_EXPIRES_IN );
+
+    const refreshTokenDatabase = new RefreshTokenDatabase();
+
+    const refreshTokenFromDatabase = await refreshTokenDatabase.getByUserIdAndDevice(
+      user.id,
+      userData.device
+    )
+
+    if(refreshTokenFromDatabase !== undefined) {
+      await refreshTokenDatabase.delete(refreshTokenFromDatabase.refreshToken)
+    }
+
+    await refreshTokenDatabase.create(
+      refreshToken,
+      userData.device,
+      true,
+      user.id
+    )
 
     res.status(200).send({
-      access_token: token
+      access_token: accessToken,
+      refresh_token: refreshToken
     })
 
   } catch (err) {
