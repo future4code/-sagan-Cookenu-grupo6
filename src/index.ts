@@ -8,6 +8,7 @@ import { createRecipeEndpoint } from "./endpoints/createRecipeEndpoint";
 import { getRecipeEndpoint } from "./endpoints/getRecipeEndpoint";
 import { getRecipesFeedEndpoint } from "./endpoints/getRecipesFeedEndpoint";
 import { getProfileEndpoint } from "./endpoints/getProfileEndpoint";
+import { deleteRecipeEndpoint } from "./endpoints/deleteRecipeEndpoint";
 
 dotenv.config();
 
@@ -32,3 +33,5 @@ app.get("/user/profile", getProfileEndpoint);
 app.get("/user/:id", getUserByIDEndpoint);
 app.get("/recipe/feed", getRecipesFeedEndpoint);
 app.get("/recipe/:id", getRecipeEndpoint);
+
+app.delete("/delete/:id", deleteRecipeEndpoint);
