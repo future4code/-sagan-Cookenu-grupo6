@@ -18,7 +18,7 @@ export class Authenticator {
         ) as any
 
         return {
-            id: data.id
+            id: `12`//data.id
         }
     }
 }
