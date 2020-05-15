@@ -30,8 +30,8 @@ const server = app.listen(process.env.PORT || 3003, () => {
 app.post("/signup", signupEndpoint);
 app.post("/login", loginEndpoint);
 app.post("/recipe", createRecipeEndpoint);
-app.post("/follow", followProfileEndpoint);
-app.post("/unfollow", unfollowProfileEndpoint);
+app.post("/user/follow", followProfileEndpoint);
+app.post("/user/unfollow", unfollowProfileEndpoint);
 
 app.get("/user/profile", getProfileEndpoint);
 app.get("/user/:id", getUserByIDEndpoint);
