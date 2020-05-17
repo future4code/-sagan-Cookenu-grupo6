@@ -43,5 +43,5 @@ app.get("/user/:id", getUserByIDEndpoint);
 app.get("/recipe/feed", getRecipesFeedEndpoint);
 app.get("/recipe/:id", getRecipeEndpoint);
 
-app.delete("/delete/:id", deleteRecipeEndpoint);
 app.delete("/delete/user", deleteProfileEndpoint);
+app.delete("/delete/:id", deleteRecipeEndpoint);
