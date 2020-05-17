@@ -38,4 +38,10 @@ export class UserDatabase extends BaseDatabase {
       .where({id})
       return user[0]
   }
+  public async delete(id:string):Promise<void>{
+    await this.connection()
+    .delete()
+    .from(UserDatabase.TABLE_NAME)
+    .where({ id })
+  }
 }
