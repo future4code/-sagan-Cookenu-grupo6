@@ -13,6 +13,7 @@ import { unfollowProfileEndpoint} from "./endpoints/unfollowUserEndpoint";
 import { deleteRecipeEndpoint } from "./endpoints/deleteRecipeEndpoint";
 import { updateRecipeEndpoint } from "./endpoints/updateRecipeEndpoint";
 import { refreshAccessTokenEndpoint } from "./endpoints/refreshAccessTokenEndpoint";
+import { deleteProfileEndpoint } from "./endpoints/deleteUserEndpoint";
 
 dotenv.config();
 
@@ -43,3 +44,4 @@ app.get("/recipe/feed", getRecipesFeedEndpoint);
 app.get("/recipe/:id", getRecipeEndpoint);
 
 app.delete("/delete/:id", deleteRecipeEndpoint);
+app.delete("/delete/user", deleteProfileEndpoint);

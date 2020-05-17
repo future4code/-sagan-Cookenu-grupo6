@@ -27,4 +27,13 @@ export class FollowersDatabase extends BaseDatabase {
         following_user_id: followingId,
       })
   }
+  public async deleteByUser(id:string):Promise<void>{
+    await this.connection()
+    .delete().from(FollowersDatabase.TABLE_NAME)
+    .where({
+      follower_user_id: id,
+    }).orWhere({
+      following_user_id: id,
+    })
+  }
 }

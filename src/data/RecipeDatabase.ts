@@ -52,4 +52,10 @@ export class RecipeDatabase extends BaseDatabase {
         .from(RecipeDatabase.TABLE_NAME)
         .where({ id })
     }
+    public async deleteByUser(id:string):Promise<void>{
+      await this.connection()
+      .delete()
+      .from(RecipeDatabase.TABLE_NAME)
+      .where({ user_id : id})
+    }
    }
